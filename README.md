@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Zens Logo](./assets/Logo.png) *(Logo pendiente)*
+![Zens Logo](./assets/logo.png) *(Logo pendiente)*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-blue)](https://www.typescriptlang.org/)
