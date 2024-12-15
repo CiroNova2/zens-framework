@@ -1,0 +1,55 @@
+# Dependencias
+node_modules/
+package-lock.json
+yarn.lock
+
+# Archivos de construcción
+dist/
+build/
+*.tsbuildinfo
+
+# Archivos de ambiente
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de IDE/Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*.bak
+
+# Archivos de cobertura de pruebas
+coverage/
+
+# Archivos temporales
+tmp/
+temp/
+
+# Archivos de debug
+.debug/
+
+# Archivos de OpenAI
+.openai.key
+
+# Archivos de datos generados
+data/*.json
+!data/characters.json
+!data/interactions.json
+
+# Otros
+*.env.example
+.cache/ 
