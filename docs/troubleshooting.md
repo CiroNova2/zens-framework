@@ -178,6 +178,6 @@ APIError: "Rate limit exceeded"
 
 If you encounter issues not covered in this guide:
 
-1. Check the [GitHub Issues](https://github.com/CiroNova/zens-framework/issues)
+1. Check the [GitHub Issues](https://github.com/CiroNova2/zens-framework/issues)
 2. Join our [Discord Community](https://discord.gg/zens-framework)
 3. Review the [API Documentation](./api-reference.md) 
