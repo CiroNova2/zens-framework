@@ -1,14 +1,14 @@
-# Dependencias
+# Dependencies
 node_modules/
 package-lock.json
 yarn.lock
 
-# Archivos de construcción
+# Build files
 dist/
 build/
 *.tsbuildinfo
 
-# Archivos de ambiente
+# Environment files
 .env
 .env.local
 .env.*.local
@@ -20,11 +20,11 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Archivos del sistema
+# System files
 .DS_Store
 Thumbs.db
 
-# Archivos de IDE/Editor
+# IDE/Editor files
 .idea/
 .vscode/
 *.swp
@@ -32,24 +32,23 @@ Thumbs.db
 *.swn
 *.bak
 
-# Archivos de cobertura de pruebas
+# Test coverage files
 coverage/
 
-# Archivos temporales
+# Temporary files
 tmp/
 temp/
 
-# Archivos de debug
+# Debug files
 .debug/
 
-# Archivos de OpenAI
+# OpenAI files
 .openai.key
 
-# Archivos de datos generados
+# Generated data files
 data/*.json
 !data/characters.json
 !data/interactions.json
 
-# Otros
-*.env.example
-.cache/ 
+# Others
+.cache/
