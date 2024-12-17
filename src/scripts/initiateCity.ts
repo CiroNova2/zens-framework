@@ -7,14 +7,31 @@ import { InteractionSimulator } from './generateInteractions';
 import { RelationshipManager } from '../services/RelationshipManager';
 
 async function initiateCity() {
-  const theme = process.argv[2] || "A diverse solarpunk city with a mix of cultures";
+  // Get all arguments after the script name and join them into a theme
+  const args = process.argv.slice(2);
+  const theme = args.length > 0 
+    ? args.join(' ').replace(/[\[\]]/g, '') // Remove any brackets if present
+    : "A diverse solarpunk city with a mix of cultures";
+
   const openAIService = new OpenAIService();
   const storageService = new StorageService();
   await storageService.load();
 
   console.log(`\nInitializing city with theme: "${theme}"\n`);
 
-  // Generar población inicial
+  // Initialize metadata first
+  const metadata = {
+    lastUpdate: new Date().toISOString(),
+    version: '1.0',
+    count: 0,
+    theme: theme,
+    createdAt: new Date().toISOString()
+  };
+  
+  // Update metadata in storage service
+  storageService.initializeWithMetadata(metadata);
+
+  // Generate initial population
   const citizenGenerator = new CitizenGenerator(openAIService, storageService);
   const populationGenerator = new PopulationGenerator(
     openAIService,
@@ -25,10 +42,10 @@ async function initiateCity() {
   console.log("Generating initial population...");
   const citizens = await populationGenerator.generateThematicPopulation(10, theme);
   
-  // Generar relaciones iniciales
+  // Generate initial relationships
   const relationshipManager = new RelationshipManager(storageService, openAIService);
   
-  // Crear familias (grupos de 3-5 personas)
+  // Create families (groups of 3-5 people)
   const unassignedCitizens = [...citizens];
   while (unassignedCitizens.length >= 3) {
     const familySize = Math.floor(Math.random() * 3) + 3;
@@ -36,11 +53,11 @@ async function initiateCity() {
     await relationshipManager.generateFamilyUnit(familyMembers);
   }
 
-  // Generar relaciones sociales
+  // Generate social relationships
   console.log("\nGenerating initial relationships...")
   await relationshipManager.generateSocialRelationships(citizens);
 
-  // Generar interacciones iniciales
+  // Generate initial interactions
   console.log("\nGenerating initial interactions...");
   const interactionGenerator = new InteractionGenerator(openAIService, storageService);
   const interactionSimulator = new InteractionSimulator(
@@ -49,14 +66,10 @@ async function initiateCity() {
     interactionGenerator
   );
   
+  console.log("Generating 5 interactions...");
   await interactionSimulator.generateRandomInteractions(5);
   
   console.log("\nCity initialization complete!");
-
-  await storageService.saveCityMetadata({
-    theme,
-    createdAt: new Date().toISOString()
-  });
 }
 
 initiateCity().catch(console.error); 

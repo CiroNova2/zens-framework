@@ -5,6 +5,9 @@ import { IStorageFiles, ICharactersData, IInteractionsData } from '../types/stor
 interface CityMetadata {
   theme: string;
   createdAt: string;
+  lastUpdate: string;
+  version: string;
+  count: number;
 }
 
 export class StorageService {
@@ -57,6 +60,13 @@ export class StorageService {
       indexes: { byDate: {}, byParticipant: {} },
       metadata: { ...metadata }
     };
+  }
+
+  initializeWithMetadata(metadata: CityMetadata) {
+    this.cityMetadata = metadata;
+    this.charactersData.metadata = { ...metadata };
+    this.interactionsData.metadata = { ...metadata };
+    this.saveAll();
   }
 
   async saveAll() {
@@ -118,11 +128,6 @@ export class StorageService {
       }
       indexes.byParticipant[participantId].push(interaction.id);
     }
-  }
-
-  async saveCityMetadata(metadata: CityMetadata) {
-    this.cityMetadata = metadata;
-    await this.saveAll();
   }
 
   getCityTheme(): string {

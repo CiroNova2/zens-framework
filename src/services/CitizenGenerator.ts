@@ -100,4 +100,33 @@ export class CitizenGenerator {
     this.nameRegistry.registerName(citizenData.name);
     return new Citizen(citizenData);
   }
+
+  async createCustomCitizen(name: string, age: number, occupation: string): Promise<Citizen> {
+    const customPrompt = `Create a citizen profile for someone named "${name}" who is ${age} years old and works as a "${occupation}".
+    Include:
+    1. 3-5 personality traits
+    2. 2-3 core values
+    3. 2-3 personal strengths
+    4. 2-3 personal weaknesses
+    5. 2-3 hobbies or interests
+    6. 2-3 unique quirks or habits
+    7. A brief background story that explains their path to their current occupation
+
+    Format as JSON:
+    {
+      "name": "${name}",
+      "age": ${age},
+      "occupation": "${occupation}",
+      "traits": ["trait1", "trait2", "trait3"],
+      "values": ["value1", "value2"],
+      "strengths": ["strength1", "strength2"],
+      "weaknesses": ["weakness1", "weakness2"],
+      "hobbies": ["hobby1", "hobby2"],
+      "quirks": ["quirk1", "quirk2"],
+      "background": "brief background story"
+    }`;
+
+    const citizenData = await this.openAIService.generateCitizenData(customPrompt);
+    return new Citizen(citizenData);
+  }
 }

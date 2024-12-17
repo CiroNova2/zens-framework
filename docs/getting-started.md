@@ -33,14 +33,30 @@ npm run initiate [theme]
 - Default theme: "A diverse solarpunk city with a mix of cultures"
 - Creates 10 initial citizens and establishes basic relationships
 
+Example:
+```bash
+npm run initiate "Coastal Tech Hub"
+```
+
 ### Add New Citizens
 ```bash
-npm run addCitizens
+npm run addCitizens [count] [name] [age] [occupation]
 ```
-- Follow the prompts to specify:
-  - Number of citizens to add
-  - Optional: Names, ages, occupations
-- System will auto-generate unspecified details
+Parameters:
+- `count`: Number of citizens to add (Default 5 if not followed by any specific parameters)
+- `name`: Full name in quotes (optional)
+- `age`: Age as a number (optional)
+- `occupation`: Occupation in quotes (optional)
+
+Examples:
+```bash
+# Add 5 random citizens
+npm run addCitizens 5
+
+# Add a specific citizen
+npm run addCitizens 1 "John Doe" 35 "Software Engineer"
+
+```
 
 ### Generate Interactions
 ```bash
@@ -57,6 +73,11 @@ npm run chat [firstName] [lastName]
 - Start a conversation with a specific citizen
 - If no name provided, selects a random citizen
 - Use `exit` to end conversation
+
+Example:
+```bash
+npm run chat John Doe
+```
 
 ### Create Specific Interactions
 ```bash
@@ -84,7 +105,17 @@ Located in `data/characters.json`:
       "relationships": [],
       "memories": []
     }
-  ]
+  },
+  "indexes": {
+    "byOccupation": {}
+  },
+  "metadata": {
+    "lastUpdate": "timestamp",
+    "version": "1.0",
+    "count": 0,
+    "theme": "City Theme",
+    "createdAt": "timestamp"
+  }
 }
 ```
 
